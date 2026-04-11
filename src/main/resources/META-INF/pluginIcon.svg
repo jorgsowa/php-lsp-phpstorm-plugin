@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+  <!-- Background -->
+  <rect width="40" height="40" rx="8" fill="#6B4FBB"/>
+
+  <!-- PHP letters -->
+  <text x="50%" y="52%" dominant-baseline="middle" text-anchor="middle"
+        font-family="monospace" font-size="13" font-weight="bold" fill="#FFFFFF">
+    PHP
+  </text>
+
+  <!-- Speed underline accent -->
+  <line x1="8" y1="30" x2="32" y2="30" stroke="#F97316" stroke-width="2.5" stroke-linecap="round"/>
+</svg>

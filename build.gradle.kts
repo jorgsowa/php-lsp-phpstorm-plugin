@@ -44,6 +44,6 @@ intellijPlatform {
         // Set CERTIFICATE_CHAIN, PRIVATE_KEY, PRIVATE_KEY_PASSWORD env vars to sign
     }
     publishing {
-        // Set PUBLISH_TOKEN env var for JetBrains Marketplace
+        token = providers.environmentVariable("PUBLISH_TOKEN")
     }
 }

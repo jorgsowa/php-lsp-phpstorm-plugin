@@ -3,7 +3,22 @@
     <name>PHP LSP</name>
     <vendor email="jorg.sowa@gmail.com">Jorg Sowa</vendor>
 
-    <description>Connects the php-lsp Rust language server to PhpStorm via LSP4IJ.</description>
+    <description><![CDATA[
+        Brings the full power of <b>php-lsp</b> — a blazing-fast PHP language server written in Rust — directly into PhpStorm.
+        <br/><br/>
+        Built on Rust's zero-cost abstractions and memory safety, php-lsp delivers near-instant responses for
+        completions, diagnostics, hover info, and go-to-definition — even in large codebases where traditional
+        PHP tooling slows down.
+        <br/><br/>
+        <b>Features:</b>
+        <ul>
+            <li>Completions with minimal latency</li>
+            <li>Real-time diagnostics powered by a native Rust engine</li>
+            <li>Go-to-definition and hover documentation</li>
+            <li>Low memory footprint compared to JVM-based language servers</li>
+        </ul>
+        Requires <a href="https://github.com/redhat-developer/lsp4ij">LSP4IJ</a> and the <code>php-lsp</code> binary on your PATH.
+    ]]></description>
 
     <depends>com.intellij.modules.platform</depends>
     <depends>com.redhat.devtools.lsp4ij</depends>
