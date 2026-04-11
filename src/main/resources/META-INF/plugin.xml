@@ -1,0 +1,22 @@
+<idea-plugin>
+    <id>com.phpls.phpstorm</id>
+    <name>PHP LSP</name>
+    <vendor email="jorg.sowa@gmail.com">Jorg Sowa</vendor>
+
+    <description>Connects the php-lsp Rust language server to PhpStorm via LSP4IJ.</description>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.redhat.devtools.lsp4ij</depends>
+
+    <extensions defaultExtensionNs="com.redhat.devtools.lsp4ij">
+        <server id="php-lsp-server"
+                name="PHP LSP"
+                factoryClass="com.phpls.phpstorm.PhpLspServerFactory">
+            <description>PHP language server written in Rust.</description>
+        </server>
+
+        <fileNamePatternMapping patterns="*.php"
+                                serverId="php-lsp-server"
+                                languageId="php"/>
+    </extensions>
+</idea-plugin>
