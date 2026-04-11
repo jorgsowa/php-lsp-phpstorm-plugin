@@ -23,18 +23,6 @@ A PhpStorm plugin that integrates [php-lsp](https://github.com/jorgsowa/php-lsp)
 3. Make sure `php-lsp` is on your `PATH`
 4. Open a PHP project — the language server starts automatically
 
-## Building from Source
-
-**Prerequisites:** Java 21, Gradle (via wrapper)
-
-```sh
-# Run sandboxed PhpStorm with the plugin loaded
-JAVA_HOME=/path/to/jdk21 ./gradlew runIde
-
-# Build the distributable .zip
-JAVA_HOME=/path/to/jdk21 ./gradlew buildPlugin
-```
-
 ## Publishing
 
 ```sh
