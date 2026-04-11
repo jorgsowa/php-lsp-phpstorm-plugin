@@ -42,7 +42,9 @@ intellijPlatform {
     }
     buildSearchableOptions = false
     signing {
-        // Set CERTIFICATE_CHAIN, PRIVATE_KEY, PRIVATE_KEY_PASSWORD env vars to sign
+        certificateChain = providers.environmentVariable("CERTIFICATE_CHAIN")
+        privateKey = providers.environmentVariable("PRIVATE_KEY")
+        password = providers.environmentVariable("PRIVATE_KEY_PASSWORD")
     }
     publishing {
         token = providers.environmentVariable("PUBLISH_TOKEN")
