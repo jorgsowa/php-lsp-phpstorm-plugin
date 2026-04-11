@@ -2,6 +2,7 @@
 build/
 .idea/
 *.iml
+.intellijPlatform/
 
 # Plugin distribution
 distributions/

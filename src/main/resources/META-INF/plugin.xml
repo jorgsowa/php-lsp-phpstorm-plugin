@@ -23,6 +23,10 @@
     <depends>com.intellij.modules.platform</depends>
     <depends>com.redhat.devtools.lsp4ij</depends>
 
+    <extensions defaultExtensionNs="com.intellij">
+        <notificationGroup id="PHP LSP" displayType="BALLOON"/>
+    </extensions>
+
     <extensions defaultExtensionNs="com.redhat.devtools.lsp4ij">
         <server id="php-lsp-server"
                 name="PHP LSP"
