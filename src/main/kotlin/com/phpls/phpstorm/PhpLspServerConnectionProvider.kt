@@ -7,6 +7,7 @@ import com.intellij.openapi.project.Project
 import com.intellij.openapi.util.SystemInfo
 import com.redhat.devtools.lsp4ij.server.ProcessStreamConnectionProvider
 import java.io.File
+import java.io.InputStream
 import java.nio.file.Files
 import java.nio.file.StandardCopyOption
 
@@ -16,6 +17,9 @@ class PhpLspServerConnectionProvider(project: Project) : ProcessStreamConnection
         commands = listOf(binary.absolutePath, "--stdio")
         workingDirectory = project.basePath
     }
+
+    override fun getInputStream(): InputStream? =
+        super.getInputStream()?.let { HoverSanitizingInputStream(it) }
 
     override fun start() {
         val binary = File(commands!!.first())
@@ -47,6 +51,7 @@ class PhpLspServerConnectionProvider(project: Project) : ProcessStreamConnection
         SystemInfo.isMac && SystemInfo.OS_ARCH == "aarch64" -> "aarch64-apple-darwin"
         SystemInfo.isMac -> "x86_64-apple-darwin"
         SystemInfo.isWindows -> "x86_64-pc-windows-msvc"
+        SystemInfo.isLinux && SystemInfo.OS_ARCH == "aarch64" -> "aarch64-unknown-linux-gnu"
         SystemInfo.isLinux -> "x86_64-unknown-linux-gnu"
         else -> null
     }
