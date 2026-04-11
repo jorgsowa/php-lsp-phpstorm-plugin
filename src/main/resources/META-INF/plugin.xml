@@ -20,6 +20,15 @@
         Requires <a href="https://github.com/redhat-developer/lsp4ij">LSP4IJ</a> and the <code>php-lsp</code> binary on your PATH.
     ]]></description>
 
+    <change-notes><![CDATA[
+        <b>0.1.0</b>
+        <ul>
+            <li>Initial release</li>
+            <li>Bundled php-lsp v0.1.51 binaries for macOS, Linux, and Windows</li>
+            <li>Automatic platform detection and binary extraction at runtime</li>
+        </ul>
+    ]]></change-notes>
+
     <depends>com.intellij.modules.platform</depends>
     <depends>com.redhat.devtools.lsp4ij</depends>
 
