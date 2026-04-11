@@ -40,10 +40,16 @@ intellijPlatform {
             sinceBuild = "243"
         }
     }
+    buildSearchableOptions = false
     signing {
         // Set CERTIFICATE_CHAIN, PRIVATE_KEY, PRIVATE_KEY_PASSWORD env vars to sign
     }
     publishing {
         token = providers.environmentVariable("PUBLISH_TOKEN")
+    }
+    pluginVerification {
+        ides {
+            ide(providers.gradleProperty("platformType"), providers.gradleProperty("platformVersion"))
+        }
     }
 }
