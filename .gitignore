@@ -6,3 +6,7 @@ build/
 
 # Plugin distribution
 distributions/
+
+# Signing keys — never commit these
+private.pem
+chain.crt
