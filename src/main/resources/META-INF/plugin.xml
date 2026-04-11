@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.jorgsowa.php-lsp</id>
     <name>PHP LSP</name>
-    <vendor email="jorg.sowa@gmail.com">Jorg Sowa</vendor>
+    <vendor email="jorg.sowa@gmail.com" url="https://github.com/jorgsowa/php-lsp-phpstorm-plugin">Jorg Sowa</vendor>
 
     <description><![CDATA[
         Brings the full power of <b>php-lsp</b> — a blazing-fast PHP language server written in Rust — directly into PhpStorm.
@@ -17,7 +17,10 @@
             <li>Go-to-definition and hover documentation</li>
             <li>Low memory footprint compared to JVM-based language servers</li>
         </ul>
-        Requires <a href="https://github.com/redhat-developer/lsp4ij">LSP4IJ</a> and the <code>php-lsp</code> binary on your PATH.
+        Requires the <a href="https://plugins.jetbrains.com/plugin/23257-lsp4ij">LSP4IJ</a> plugin (free, by Red Hat).
+        The <code>php-lsp</code> binary is bundled — no separate installation needed.
+        <br/><br/>
+        Source code: <a href="https://github.com/jorgsowa/php-lsp-phpstorm-plugin">github.com/jorgsowa/php-lsp-phpstorm-plugin</a>
     ]]></description>
 
     <change-notes><![CDATA[
