@@ -17,7 +17,4 @@ class PhpLspServerFactory : LanguageServerFactory {
 private class PhpLspLanguageClient(project: Project) : LanguageClientImpl(project) {
     override fun refreshDiagnostics(): CompletableFuture<Void> =
         CompletableFuture.completedFuture(null)
-
-    override fun refreshInlineValues(): CompletableFuture<Void> =
-        CompletableFuture.completedFuture(null)
 }

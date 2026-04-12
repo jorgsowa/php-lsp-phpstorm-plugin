@@ -4,9 +4,13 @@ import com.google.gson.JsonParser
 import java.io.InputStream
 
 /**
- * Wraps the LSP server's output stream and strips markdown tables from hover responses
- * before they reach LSP4IJ. This prevents a Swing JEditorPane crash when rendering
- * HTML tables in the documentation renderer (TableView$RowView.layoutMajorAxis).
+ * Wraps the LSP server's output stream and sanitizes messages before they reach LSP4IJ:
+ *
+ * - Strips markdown tables from hover responses to prevent a Swing JEditorPane crash
+ *   when rendering HTML tables (TableView$RowView.layoutMajorAxis).
+ * - Drops `workspace/inlineValue/refresh` requests, which lsp4j dispatches via
+ *   MethodHandles.unreflectSpecial, bypassing any LanguageClient override and throwing
+ *   UnsupportedOperationException. Transformed to a no-op notification instead.
  */
 class HoverSanitizingInputStream(private val source: InputStream) : InputStream() {
     private var buffer = ByteArray(0)
@@ -49,7 +53,7 @@ class HoverSanitizingInputStream(private val source: InputStream) : InputStream(
             totalRead += n
         }
 
-        val sanitized = sanitizeIfHover(body.toString(Charsets.UTF_8)).toByteArray(Charsets.UTF_8)
+        val sanitized = sanitizeMessage(body.toString(Charsets.UTF_8)).toByteArray(Charsets.UTF_8)
         return "Content-Length: ${sanitized.size}\r\n\r\n".toByteArray(Charsets.US_ASCII) + sanitized
     }
 
@@ -62,6 +66,22 @@ class HoverSanitizingInputStream(private val source: InputStream) : InputStream(
             buf.add(b.toByte())
             if (b3 == '\r'.code && b2 == '\n'.code && b1 == '\r'.code && b == '\n'.code) return buf.toByteArray()
             b3 = b2; b2 = b1; b1 = b
+        }
+    }
+
+    private fun sanitizeMessage(json: String): String {
+        return try {
+            val root = JsonParser.parseString(json).asJsonObject
+            // lsp4j dispatches this via MethodHandles.unreflectSpecial, which bypasses any
+            // LanguageClient override and falls through to the interface default that throws
+            // UnsupportedOperationException. Transform to a no-op notification so lsp4j
+            // discards it silently rather than crashing.
+            if (root.get("method")?.asString == "workspace/inlineValue/refresh") {
+                return """{"jsonrpc":"2.0","method":"$/ignore"}"""
+            }
+            sanitizeIfHover(json)
+        } catch (e: Exception) {
+            json
         }
     }
 

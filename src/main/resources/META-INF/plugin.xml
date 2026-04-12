@@ -24,6 +24,15 @@
     ]]></description>
 
     <change-notes><![CDATA[
+        <b>0.1.2</b>
+        <ul>
+            <li>Fix compatibility with PhpStorm 2025.1 and later versions</li>
+        </ul>
+        <b>0.1.1</b>
+        <ul>
+            <li>Updated description and source code link</li>
+            <li>Added vendor URL</li>
+        </ul>
         <b>0.1.0</b>
         <ul>
             <li>Initial release</li>
