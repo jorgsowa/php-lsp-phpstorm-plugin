@@ -24,6 +24,11 @@
     ]]></description>
 
     <change-notes><![CDATA[
+        <b>0.1.3</b>
+        <ul>
+            <li>Fix <code>workspace/inlineValue/refresh</code> UnsupportedOperationException crash</li>
+            <li>Update bundled php-lsp binaries to v0.1.52</li>
+        </ul>
         <b>0.1.2</b>
         <ul>
             <li>Fix compatibility with PhpStorm 2025.1 and later versions</li>
