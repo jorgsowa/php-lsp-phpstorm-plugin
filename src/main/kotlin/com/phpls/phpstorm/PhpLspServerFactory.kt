@@ -4,6 +4,7 @@ import com.intellij.openapi.project.Project
 import com.redhat.devtools.lsp4ij.LanguageServerFactory
 import com.redhat.devtools.lsp4ij.client.LanguageClientImpl
 import com.redhat.devtools.lsp4ij.server.StreamConnectionProvider
+import org.eclipse.lsp4j.LogTraceParams
 import java.util.concurrent.CompletableFuture
 
 class PhpLspServerFactory : LanguageServerFactory {
@@ -17,4 +18,9 @@ class PhpLspServerFactory : LanguageServerFactory {
 private class PhpLspLanguageClient(project: Project) : LanguageClientImpl(project) {
     override fun refreshDiagnostics(): CompletableFuture<Void> =
         CompletableFuture.completedFuture(null)
+
+    override fun refreshInlineValues(): CompletableFuture<Void> =
+        CompletableFuture.completedFuture(null)
+
+    override fun logTrace(params: LogTraceParams) = Unit
 }
