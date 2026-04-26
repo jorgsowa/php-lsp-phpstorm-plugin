@@ -24,6 +24,10 @@
     ]]></description>
 
     <change-notes><![CDATA[
+        <b>0.1.5</b>
+        <ul>
+            <li>Update bundled php-lsp binaries to v0.2.0</li>
+        </ul>
         <b>0.1.4</b>
         <ul>
             <li>Update bundled php-lsp binaries to v0.1.54</li>
