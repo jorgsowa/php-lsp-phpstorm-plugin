@@ -1,7 +1,7 @@
 plugins {
     id("java")
-    id("org.jetbrains.kotlin.jvm") version "2.1.0"
-    id("org.jetbrains.intellij.platform") version "2.2.0"
+    id("org.jetbrains.kotlin.jvm") version "2.3.21"
+    id("org.jetbrains.intellij.platform") version "2.16.0"
 }
 
 group = providers.gradleProperty("pluginGroup").get()
@@ -52,7 +52,7 @@ intellijPlatform {
     }
     pluginVerification {
         ides {
-            ide(providers.gradleProperty("platformType"), providers.gradleProperty("platformVersion"))
+            create(providers.gradleProperty("platformType"), providers.gradleProperty("platformVersion"))
         }
     }
 }
