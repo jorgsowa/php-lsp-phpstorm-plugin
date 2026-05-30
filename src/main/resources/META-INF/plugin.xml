@@ -24,6 +24,11 @@
     ]]></description>
 
     <change-notes><![CDATA[
+        <b>0.1.6</b>
+        <ul>
+            <li>Update bundled php-lsp binaries to v0.7.0</li>
+            <li>Update build tooling: LSP4IJ 0.19.4, Kotlin 2.3.21, IntelliJ Platform Gradle Plugin 2.16.0, Gradle 9.5.1</li>
+        </ul>
         <b>0.1.5</b>
         <ul>
             <li>Update bundled php-lsp binaries to v0.2.0</li>
