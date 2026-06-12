@@ -23,12 +23,6 @@ A PhpStorm plugin that integrates [php-lsp](https://github.com/jorgsowa/php-lsp)
 
 The `php-lsp` binary (v0.10.0) is bundled for macOS, Linux, and Windows — no separate installation needed.
 
-## Publishing
-
-```sh
-PUBLISH_TOKEN=<your-token> JAVA_HOME=/path/to/jdk21 ./gradlew publishPlugin
-```
-
 ## License
 
 MIT
