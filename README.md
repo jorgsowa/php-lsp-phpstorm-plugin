@@ -14,14 +14,14 @@ A PhpStorm plugin that integrates [php-lsp](https://github.com/jorgsowa/php-lsp)
 
 - PhpStorm 2024.3+
 - [LSP4IJ](https://plugins.jetbrains.com/plugin/23257-lsp4ij) plugin installed
-- `php-lsp` binary available on your `PATH`
 
 ## Installation
 
 1. Install **LSP4IJ** from the JetBrains Marketplace
 2. Install this plugin from the JetBrains Marketplace
-3. Make sure `php-lsp` is on your `PATH`
-4. Open a PHP project — the language server starts automatically
+3. Open a PHP project — the language server starts automatically
+
+The `php-lsp` binary (v0.10.0) is bundled for macOS, Linux, and Windows — no separate installation needed.
 
 ## Publishing
 
