@@ -24,6 +24,10 @@
     ]]></description>
 
     <change-notes><![CDATA[
+        <b>0.1.9</b>
+        <ul>
+            <li>Fix automated release workflow step order</li>
+        </ul>
         <b>0.1.8</b>
         <ul>
             <li>Update bundled php-lsp binaries to v0.12.0</li>
