@@ -24,6 +24,10 @@
     ]]></description>
 
     <change-notes><![CDATA[
+        <b>0.1.11</b>
+        <ul>
+            <li>Update bundled php-lsp binaries to v0.13.0</li>
+        </ul>
         <b>0.1.10</b>
         <ul>
             <li>Update LSP4IJ to 0.20.1, fixing a "Read access is allowed from inside read-action only" threading error during diagnostics</li>
