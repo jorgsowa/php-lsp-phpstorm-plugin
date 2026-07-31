@@ -70,6 +70,10 @@ class HoverSanitizingInputStream(private val source: InputStream) : InputStream(
     }
 
     private fun sanitizeMessage(json: String): String {
+        // Cheap pre-filter: most messages (semantic tokens, diagnostics, completions, ...)
+        // need no sanitizing, so skip the Gson parse entirely for those.
+        if (!json.contains("inlineValue/refresh") && !json.contains("\"contents\"")) return json
+
         return try {
             val root = JsonParser.parseString(json).asJsonObject
             // lsp4j dispatches this via MethodHandles.unreflectSpecial, which bypasses any
@@ -79,15 +83,14 @@ class HoverSanitizingInputStream(private val source: InputStream) : InputStream(
             if (root.get("method")?.asString == "workspace/inlineValue/refresh") {
                 return """{"jsonrpc":"2.0","method":"$/ignore"}"""
             }
-            sanitizeIfHover(json)
+            sanitizeIfHover(root, json)
         } catch (e: Exception) {
             json
         }
     }
 
-    private fun sanitizeIfHover(json: String): String {
+    private fun sanitizeIfHover(root: com.google.gson.JsonObject, json: String): String {
         return try {
-            val root = JsonParser.parseString(json).asJsonObject
             val result = root.get("result")?.takeIf { it.isJsonObject }?.asJsonObject ?: return json
             val contents = result.get("contents") ?: return json
 
