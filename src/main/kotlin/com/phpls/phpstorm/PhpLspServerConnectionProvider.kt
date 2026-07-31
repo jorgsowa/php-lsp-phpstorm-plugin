@@ -1,8 +1,10 @@
 package com.phpls.phpstorm
 
+import com.intellij.ide.plugins.PluginManagerCore
 import com.intellij.notification.NotificationGroupManager
 import com.intellij.notification.NotificationType
 import com.intellij.openapi.application.PathManager
+import com.intellij.openapi.extensions.PluginId
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.util.SystemInfo
 import com.redhat.devtools.lsp4ij.server.ProcessStreamConnectionProvider
@@ -37,11 +39,15 @@ class PhpLspServerConnectionProvider(project: Project) : ProcessStreamConnection
     private fun extractBundledBinary(): File? {
         val platform = detectPlatform() ?: return null
         val binaryName = if (SystemInfo.isWindows) "php-lsp-$platform.exe" else "php-lsp-$platform"
-        val resource = javaClass.getResourceAsStream("/binaries/$binaryName") ?: return null
 
-        val cacheDir = File(PathManager.getSystemPath(), "php-lsp-server").also { it.mkdirs() }
+        // Cache per plugin version so upgrades extract a fresh binary, while
+        // repeated server starts on the same version reuse the cached file.
+        val pluginVersion = PluginManagerCore.getPlugin(PluginId.getId("com.jorgsowa.php-lsp"))?.version ?: "unknown"
+        val cacheDir = File(PathManager.getSystemPath(), "php-lsp-server/$pluginVersion").also { it.mkdirs() }
         val binary = File(cacheDir, binaryName)
+        if (binary.exists()) return binary
 
+        val resource = javaClass.getResourceAsStream("/binaries/$binaryName") ?: return null
         resource.use { Files.copy(it, binary.toPath(), StandardCopyOption.REPLACE_EXISTING) }
         binary.setExecutable(true)
         return binary

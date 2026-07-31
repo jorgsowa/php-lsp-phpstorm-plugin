@@ -13,6 +13,11 @@ import java.io.InputStream
  *   UnsupportedOperationException. Transformed to a no-op notification instead.
  */
 class HoverSanitizingInputStream(private val source: InputStream) : InputStream() {
+    companion object {
+        private val TABLE_SEPARATOR_ROW = Regex("\\|[-:| ]+\\|")
+        private val EXCESS_BLANK_LINES = Regex("\n{3,}")
+    }
+
     private var buffer = ByteArray(0)
     private var pos = 0
 
@@ -113,7 +118,7 @@ class HoverSanitizingInputStream(private val source: InputStream) : InputStream(
             val trimmed = line.trim()
             when {
                 // Skip separator rows like |---|---|
-                trimmed.matches(Regex("\\|[-:| ]+\\|")) -> {}
+                trimmed.matches(TABLE_SEPARATOR_ROW) -> {}
                 // Convert table rows to plain text: | A | B | → A  B
                 trimmed.startsWith("|") -> {
                     val cells = trimmed.trim('|').split("|").map { it.trim() }.filter { it.isNotEmpty() }
@@ -123,7 +128,7 @@ class HoverSanitizingInputStream(private val source: InputStream) : InputStream(
             }
         }
         return result.joinToString("\n")
-            .replace(Regex("\n{3,}"), "\n\n")
+            .replace(EXCESS_BLANK_LINES, "\n\n")
             .trim()
     }
 }
