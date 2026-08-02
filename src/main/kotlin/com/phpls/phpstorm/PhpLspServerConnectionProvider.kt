@@ -1,6 +1,6 @@
 package com.phpls.phpstorm
 
-import com.intellij.ide.plugins.PluginManagerCore
+import com.intellij.ide.plugins.PluginManager
 import com.intellij.notification.NotificationGroupManager
 import com.intellij.notification.NotificationType
 import com.intellij.openapi.application.PathManager
@@ -42,7 +42,7 @@ class PhpLspServerConnectionProvider(project: Project) : ProcessStreamConnection
 
         // Cache per plugin version so upgrades extract a fresh binary, while
         // repeated server starts on the same version reuse the cached file.
-        val pluginVersion = PluginManagerCore.getPlugin(PluginId.getId("com.jorgsowa.php-lsp"))?.version ?: "unknown"
+        val pluginVersion = PluginManager.getPlugin(PluginId.getId("com.jorgsowa.php-lsp"))?.version ?: "unknown"
         val cacheDir = File(PathManager.getSystemPath(), "php-lsp-server/$pluginVersion").also { it.mkdirs() }
         val binary = File(cacheDir, binaryName)
         if (binary.exists()) return binary
