@@ -24,6 +24,10 @@
     ]]></description>
 
     <change-notes><![CDATA[
+        <b>0.2.4</b>
+        <ul>
+            <li>Update bundled php-lsp binaries to v0.24.1</li>
+        </ul>
         <b>0.2.3</b>
         <ul>
             <li>Replace internal <code>PluginManagerCore.getPlugin</code> call with the public <code>PluginManager.getPlugin</code> equivalent</li>
