@@ -21,7 +21,7 @@ A PhpStorm plugin that integrates [php-lsp](https://github.com/jorgsowa/php-lsp)
 2. Install this plugin from the JetBrains Marketplace
 3. Open a PHP project — the language server starts automatically
 
-The `php-lsp` binary (v0.24.1) is bundled for macOS, Linux, and Windows — no separate installation needed.
+The `php-lsp` binary (v0.25.0) is bundled for macOS, Linux, and Windows — no separate installation needed.
 
 ## License
 
