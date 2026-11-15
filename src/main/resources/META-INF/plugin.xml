@@ -24,6 +24,25 @@
     ]]></description>
 
     <change-notes><![CDATA[
+        <b>0.2.8</b>
+        <ul>
+            <li>Restore missing Marketplace change notes for 0.2.5–0.2.7</li>
+        </ul>
+        <b>0.2.7</b>
+        <ul>
+            <li>Remove deprecated/internal plugin manager API usage; the plugin version is now embedded at build time</li>
+            <li>Update bundled php-lsp binaries to v0.33.0</li>
+            <li>Update LSP4IJ to 0.21.0</li>
+        </ul>
+        <b>0.2.6</b>
+        <ul>
+            <li>Replace deprecated <code>PluginManager.getPlugin</code> with <code>PluginManagerCore.getPlugin</code></li>
+            <li>Update bundled php-lsp binaries to v0.25.1</li>
+        </ul>
+        <b>0.2.5</b>
+        <ul>
+            <li>Update bundled php-lsp binaries to v0.25.0</li>
+        </ul>
         <b>0.2.4</b>
         <ul>
             <li>Update bundled php-lsp binaries to v0.24.1</li>
