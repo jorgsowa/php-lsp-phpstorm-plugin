@@ -1,7 +1,7 @@
 plugins {
     id("java")
-    id("org.jetbrains.kotlin.jvm") version "2.4.20"
-    id("org.jetbrains.intellij.platform") version "2.18.1"
+    id("org.jetbrains.kotlin.jvm") version "2.4.21"
+    id("org.jetbrains.intellij.platform") version "2.20.1"
 }
 
 group = providers.gradleProperty("pluginGroup").get()
@@ -54,5 +54,13 @@ intellijPlatform {
         ides {
             create(providers.gradleProperty("platformType"), providers.gradleProperty("platformVersion"))
         }
+    }
+}
+
+tasks.processResources {
+    val pluginVersion = providers.gradleProperty("pluginVersion")
+    inputs.property("pluginVersion", pluginVersion)
+    filesMatching("php-lsp-plugin.version") {
+        expand("version" to pluginVersion.get())
     }
 }
